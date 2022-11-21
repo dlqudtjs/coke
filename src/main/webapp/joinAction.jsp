@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="user.UserDAO" %>
 <%@ page import="java.io.PrintWriter" %>
-<jsp:useBean id="user" class="user.User" scope="page" />
+<jsp:useBean id="user" class="user.UserDTO" scope="page" />
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
 <jsp:setProperty name="user" property="userEmail" />
@@ -58,7 +58,7 @@
 				session.setAttribute("userID", user.getUserID());
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("location.href='main.jsp';");
+				script.println("location.href='index.jsp';");
 				script.println("alert('회원가입이 완료되었습니다.');");
 				script.println("</script>");
 				script.close();

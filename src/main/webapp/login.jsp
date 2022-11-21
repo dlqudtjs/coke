@@ -4,60 +4,181 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width", initial-scale="1">
-<link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
 <title>하루 한 권</title>
 </head>
+	<!-- 부트스트랩 CSS 추가하기 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+    html{
+    	height: 100%;
+    	background-color: black;
+    }
+    body{
+	    width: 100%;
+	    height: 100%;
+	    margin: 0;
+	  background-size: cover;
+	  overflow:hidden;
+    }
+    hr {
+    	height: 3px;
+    	background: black;
+    	border: 0;
+    	margin: 0px;
+    }
+    header {
+    	background-color: #FFD6D6;
+    	display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    font-size: 25px;
+    }
+    h5 {
+    	margin-top: 30%;
+    	margin-bottom: 30%;
+    }
+    
+.box_container_left{
+	background-color: #FFF0F0;
+	height: 100%;
+	float: left;
+	text-align: center;
+	width: 50%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box_container_right{
+	background-color: #FFF0F0;
+	height: 100%;
+	float:right;
+	text-align: center;
+	width: 50%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box_left {
+	background-color: #FFD6D6;
+	height:55%;
+	width: 70%;
+}
+
+.box_right {
+	background-color: #FFD6D6;
+	height:55%;
+	width: 70%;
+}
+
+.box_left:hover {
+	background-color: #FFB9B9;
+}
+
+.box_right:hover {
+	background-color: #FFB9B9;
+}
+
+.modal-body {
+	background-color: #FFD6D6;
+}
+
+.modal-header {
+	background-color: #FFC2C2;
+}
+
+.form-control {
+	background-color: #FFF0F0;
+}
+
+</style>
+
 <body>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="main.jsp">하루 한 권</a>
- 		</div>
- 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
- 			<ul class="nav navbar-nav">
- 				<li><a href="main.jsp">메인</a></li>
- 				<li><a href="bbs.jsp">게시판</a></li>
- 			</ul>
- 			<ul class="nav navbar-nav navbar-right">
- 				<li class="dropdown">
- 					<a href="#" class="dropdown-toggle"
- 						data-toggle="dropdown" role="button" aria-haspopup="true"
- 						aria-expanded="false">접속하기<span class="caret"></span></a>
- 					<ul class="dropdown-menu">
- 						<li class="active"><a href="login.jsp">로그인</a></li>
- 						<li><a href="join.jsp">회원가입</a></li>
- 					</ul>
- 				</li>
- 			</ul>
- 		</div>
-	</nav>
-	<div class="container">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
-			<div class="jumbotron" style="padding-top: 20px;">
-				<form method="post" action="loginAction.jsp">
-					<h3 style="text-align: center;">로그인 화면</h3>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">
+	<header><a style="color: black; text-decoration-line: none;" href="index.jsp" >하루 한 권</a></header>
+	<hr>
+	<div class="box_container_left">
+		<div class="box_left" >
+		<div><h5 style="color:white; font-size: 2.5em;">회원이십니까?</h5></div>
+		<a style="color: black;" class="btn btn-outline-warning btn-lg mx-3 mt-2" data-toggle="modal" href="#loginModal">로그인</a>
+		</div>
+	</div>
+	<div class="box_container_right">
+		<div class="box_right">
+		<div><h5 style="color:white; font-size: 2.5em;">회원이 아니십니까?</h5></div>
+		<a style="color: black;" class="btn btn-outline-warning btn-lg mx-1 mt-2" data-toggle="modal" href="#joinModal">회원가입</a>
+		</div>
+	</div>
+	<!-- 제이쿼리 자바스크립트 추가하기 -->
+    <script src="./js/jquery.min.js"></script>
+    <!-- 부트스트랩 자바스크립트 추가하기 -->
+    <script src="./js/bootstrap.min.js"></script>
+		<!-- 로그인 모달 -->
+		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">로그인</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
+					<div class="modal-body">
+						<form action="./loginAction.jsp" method="post">
+						<!-- 아이디 -->
+							<div class="form-group">
+								<label>아이디</label> <input type="text" name="userID" class="form-control">
+							</div>
+							<!-- 비밀번호 -->
+							<div class="form-group">
+								<label>비밀번호</label> <input type="password" name="userPassword" class="form-control">
+							</div>
+							<div class="modal-footer">
+								<button style="background-color: pink; color: white;" type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+								<button style="background-color: pink; color: white;" type="submit" class="btn btn-warning">로그인</button>
+							</div>
+						</form>
 					</div>
-					<input type="submit" class="btn btn-primary form-control" value="로그인">
-				</form>
+				</div>
 			</div>
 		</div>
-		<div class="col-lg-4"></div>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+		
+		<!-- 회원가입 모달 -->
+		<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">회원가입</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="./joinAction.jsp" method="post">
+							<!-- 아이디 -->
+							<div class="form-group">
+								<label>아이디</label> <input type="text" name="userID" class="form-control">
+							</div>
+							
+							<!-- 비밀번호 -->
+							<div class="form-group">
+								<label>비밀번호</label> <input type="password" name="userPassword" class="form-control">
+							</div>
+							
+							<!-- 이메일 -->
+							<div class="form-group">
+								<label>이메일</label> <input type="text" name="userEmail" class="form-control">
+							</div>
+							
+							<div class="modal-footer">
+								<button style="background-color: pink; color: white;" type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+								<button style="background-color: pink; color: white;" type="submit" class="btn btn-warning">회원가입</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="user.UserDAO" %>
 <%@ page import="java.io.PrintWriter" %>
-<jsp:useBean id="user" class="user.User" scope="page" />
+<jsp:useBean id="user" class="user.UserDTO" scope="page" />
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인 하셨습니다');");
-			script.println("location.href='main.jsp'");
+			script.println("location.href='index.jsp'");
 			//로그인하면 이용할 수 있는 main.jsp로 이동
 			script.println("</script>");
 			script.close();

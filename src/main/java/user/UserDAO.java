@@ -47,7 +47,7 @@ public class UserDAO {
 		return -2; // 데이터베이스 오류
 	}
 
-	public int join(User user) {
+	public int join(UserDTO user) {
 		String SQL="insert into user values (?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
