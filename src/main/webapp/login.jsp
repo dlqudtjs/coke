@@ -12,14 +12,13 @@
     <style>
     html{
     	height: 100%;
-    	background-color: black;
     }
     body{
 	    width: 100%;
 	    height: 100%;
 	    margin: 0;
-	  background-size: cover;
-	  overflow:hidden;
+		background-size: cover;
+		overflow:hidden;
     }
     hr {
     	height: 3px;

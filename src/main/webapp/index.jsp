@@ -29,61 +29,7 @@
 </style>
 </head>
 <body>
-	<%
-		String userID = null;
-		//세선 정보가 있으면
-		if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
- 	%>
-	<nav class="navbar navbar-default">
-		<div style="background-color: #FFD6D6;" class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a style="background-color: #FFB9B9;" class="navbar-brand" href="index.jsp">하루 한 권</a>
- 		</div>
- 		<div style="background-color: #FFD6D6;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
- 			<ul class="nav navbar-nav">
- 				<li><a href="searchBooks.jsp">도서 검색</a></li>
- 				<li><a href="index.jsp">도서 예약</a></li>
- 				<li><a href="index.jsp">예약 조회</a></li>
- 			</ul>
- 			<%	//로그인이 되지 않았다면
- 				if(userID == null) {
- 			%>
- 			<ul class="nav navbar-nav navbar-right">
- 				<li class="dropdown">
- 					<a href="#" class="dropdown-toggle"
- 						data-toggle="dropdown" role="button" aria-haspopup="true"
- 						aria-expanded="false">접속하기<span class="caret"></span></a>
- 					<ul class="dropdown-menu">
- 						<li><a href="login.jsp">로그인 및 회원가입</a></li>
- 					</ul>
- 				</li>
- 			</ul>
- 			<%
- 				} else {
-			%>
-			<ul class="nav navbar-nav navbar-right">
- 				<li class="dropdown">
- 					<a href="#" class="dropdown-toggle"
- 						data-toggle="dropdown" role="button" aria-haspopup="true"
- 						aria-expanded="false">회원관리<span class="caret"></span></a>
- 					<ul class="dropdown-menu">
- 						<li><a href="logoutAction.jsp">로그아웃</a></li>
- 					</ul>
- 				</li>
- 			</ul>
-			<%
- 				}
- 			%>
- 		</div>
-	</nav>
+	<%@ include file="/component/nav.jsp" %>
 	<div style="margin-top:5%;" class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
@@ -93,13 +39,13 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="images/1.jpg">
+					<img style="width: 450px; height: 450px" src="images/1.jpg">
 				</div>
 				<div class="item">
-					<img src="images/2.jpg">
+					<img style="width: 450px; height: 450px" src="images/2.jpg">
 				</div>
 				<div class="item">
-					<img src="images/3.jpg">
+					<img style="width: 450px; height: 450px" src="images/3.jpg">
 				</div>
 			</div>
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">

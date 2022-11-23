@@ -1,11 +1,12 @@
 package book;
 
-import db.Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import db.Config;
 
 public class BookDAO {
 	private Connection conn;
@@ -50,7 +51,7 @@ public class BookDAO {
 		try {
 			// 실행 준비 단계
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, pageNumber - 1);
+			pstmt.setInt(1, (pageNumber - 1) * 10);
 			// 실행 결과를 rs에 담기
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -77,14 +78,15 @@ public class BookDAO {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			// 실행 결과를 rs에 담기
 			rs = pstmt.executeQuery();
-			int count = rs.getInt(1);
-			if (count > ((pageNumber - 1) * 10) + 1) {
-				return true;
+			while(rs.next()) {
+				int count = rs.getInt(1);
+				if (count >= ((pageNumber - 1) * 10) + 1) {
+					return true;
+				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.print(e);
 		}
-		
 		return false;
 	}
 	

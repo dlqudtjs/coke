@@ -1,4 +1,3 @@
-<%-- 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -12,119 +11,115 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
 <title>하루 한 권</title>
+<style>
+	body, html {
+		height: 100%;
+		
+	}
+	.container-background {
+		background-color: #FFF0F0;
+		height: 100%;
+		display: flex;
+	    justify-content: center;
+	    align-items: flex-end;
+	}
+	.container-book {
+		background-color: white;
+		height: 90%;
+		border-top-left-radius: 7%;
+		border-top-right-radius: 7%; 
+	}
+	.container-header {
+		height: auto;
+	    margin-top: 5%;
+	    text-align: center;
+	    font-size: 40px;
+	}
+	.container-carousel {
+		display: flex;
+	    justify-content: center;
+	    margin-top: 5%;
+	}
+	.container-summary {
+		height: 20%;
+	    text-align: center;
+		margin-top: 5%;
+	    margin-left: 5%;
+	    margin-right: 5%;
+	    font-size: 15px;
+	}
+	.btn {
+		width: 20%;
+		border-radius: 10px;
+	}
+	.container-btn {
+		display: flex;
+	    justify-content: space-evenly;
+	}
+</style>
 </head>
 <body>
-	<%
-	String userID = null;
-			//세선 정보가 있으면
-			if (session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID");
-			}
-			
-			int bbsID = 0;
-			if (request.getParameter("bbsID") != null) {
-		bbsID = Integer.parseInt(request.getParameter("bbsID"));
-			}
-			
-			if(bbsID == 0) {
-		//존재하지 않는 글일 경우
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('유효하지 않은 글입니다..')");
-		script.println("location.href = 'bbs.jsp'");
-		script.println("</script>");
-			}
-			BookDTO bbs = new BookDAO().getBbs(bbsID);
+	<%		
+		String bookTitle = "";
+		if (request.getParameter("bookTitle") != "") {
+			bookTitle = request.getParameter("bookTitle");
+		}
+		
+		
+		BookDTO book = new BookDAO().getBook(bookTitle);
+		
+		if(book == null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('책 정보가 없습니다.')");
+			script.println("location.href = 'searchBooks.jsp'");
+			script.println("</script>");
+		}
+		
 	%>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.jsp">하루 한 권</a>
- 		</div>
- 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
- 			<ul class="nav navbar-nav">
- 				<li><a href="index.jsp">메인</a></li>
- 				<li class="active"><a href="bbs.jsp">게시판</a></li>
- 			</ul>
- 			<%
- 				if(userID == null) {
- 			%>
- 			<ul class="nav navbar-nav navbar-right">
- 				<li class="dropdown">
- 					<a href="#" class="dropdown-toggle"
- 						data-toggle="dropdown" role="button" aria-haspopup="true"
- 						aria-expanded="false">접속하기<span class="caret"></span></a>
- 					<ul class="dropdown-menu">
- 						<li><a href="login.jsp">로그인</a></li>
- 						<li><a href="join.jsp">회원가입</a></li>
- 					</ul>
- 				</li>
- 			</ul>
- 			<%
- 				} else {
-			%>
-			<ul class="nav navbar-nav navbar-right">
- 				<li class="dropdown">
- 					<a href="#" class="dropdown-toggle"
- 						data-toggle="dropdown" role="button" aria-haspopup="true"
- 						aria-expanded="false">회원관리<span class="caret"></span></a>
- 					<ul class="dropdown-menu">
- 						<li><a href="logoutAction.jsp">로그아웃</a></li>
- 					</ul>
- 				</li>
- 			</ul>
-			<%
- 				}
- 			%>
- 		</div>
-	</nav>
-	<div class="container">
-		<div class="row">
-			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
-					<tr>
-						<th colspan="3" style="background-color:#eeeeee; text-align: center;"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td style="width: 20%;">글 제목</td>
-						<td colspan="2"><%=bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
-					</tr>
-					<tr>
-						<td>작성자</td>
-						<td colspan="2"><%=bbs.getUserID() %></td>
-					</tr>
-					<tr>
-						<td>작성일자</td>
-						<td colspan="2"><%=bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + "시" + bbs.getBbsDate().substring(14, 16) + "분" %></td>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td colspan="2"><div style="min-height: 200px; text-align: Left;"><%=bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></div></td>
-					</tr>
-				</tbody>
-			</table>
-			<a href="bbs.jsp" class="btn btn-primary">목록</a>
-			<%
-				//글 쓴 사람이 들어왔다면 수정이 가능하도록 설정		
-				if(userID != null && userID.equals(bbs.getUserID())) {
-			%>
-					<a href="update.jsp?bbsID=<%=bbsID %>" class="btn btn-primary">수정</a>
-					<a onclick="return confirm('정말 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%=bbsID %>" class="btn btn-primary">삭제</a>
-			<%
-				}
-			%>
-			<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+	<%@ include file="/component/nav.jsp" %>
+	<div class="container-background">
+		<div style="width:700px;" class="container-book">
+			<div class="container-header">
+				<%=book.getBookTitle() %>
+			</div>
+			<div class="container-carousel">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
+					<div style="position: relative; width: 100%; overflow: hidden; border-radius: 10%;" class="carousel-inner">
+						<div class="item active">
+							<img style="width: 450px; height: 450px" src="images/1.jpg">
+						</div>
+						<div class="item">
+							<img style="width: 450px; height: 450px" src="images/2.jpg">
+						</div>
+						<div class="item">
+							<img style="width: 450px; height: 450px" src="images/3.jpg">
+						</div>
+					</div>
+					<a style="margin-top: 10%; height: 80%;" class="left carousel-control" href="#myCarousel" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a style="margin-top: 10%; height: 80%;" class="right carousel-control" href="#myCarousel" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div>
+			</div>
+			<div class="container-summary">
+				<h2><%=book.getBookTitle() %></h3>
+				<%=book.getBookSummary() %>
+			</div>
+			<div class="container-btn">
+				<button style="height: 4%;" type="button" class="btn btn-danger">예약</button>
+				<button style="height: 4%;" type="button" class="btn btn-danger">목록</button>
+			</div>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
-</html> --%>
+</html>
