@@ -1,11 +1,18 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<script src="js/data.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <style>
 	html, body {
 		background-color: #FFF0F0;
@@ -105,10 +112,54 @@
     	align-items: center;
    	    justify-content: space-around;
 	}
-	
 </style>
 <title>Insert title here</title>
 </head>
+<script>
+	$(function() {	//화면 로딩후 시작
+		$("#input_search").autocomplete({  //오토 컴플릿트 시작
+			source: List,	// source는 data.js파일 내부의 List 배열
+			focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌	
+				return false;
+			},
+			minLength: 1,// 최소 글자수
+			delay: 100,	//autocomplete 딜레이 시간(ms)
+			//disabled: true, //자동완성 기능 끄기
+		});
+		
+		$('#input_date').datepicker({
+			dateFormat : "yy-mm-dd",
+		    // endDate : "infinity",
+		    autoclose : true, 
+		    todayHighlight :true,  // 오늘을 표시해줄지. default 가 false
+		    onSelect: function() {
+		    	let date = new Date($("#input_date").val());
+		    	date.setMonth(date.getMonth() + 1); //한 달이 밀려서 +2를 해야된다.
+				var month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+				var day =  date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+				tmp.value = date.getFullYear() + "-" + month + "-" + day;
+		    }
+		}).datepicker("setDate", new Date());
+	    
+	    $("#input_time").timepicker({
+	        timeFormat: 'h:mm p',
+	        interval: 60,
+	        minTime: '10',
+	        maxTime: '6:00pm',
+	        defaultTime: '11',
+	        startTime: '10:00',
+	        dynamic: false,
+	        dropdown: true,
+	        scrollbar: true        
+	    });
+	   	let date = new Date($("#input_date").val());
+	    const tmp = document.getElementById("input_return_date");
+	    date.setMonth(date.getMonth() + 1); //한 달이 밀려서 +2를 해야된다.
+	    var month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+	    var day =  date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+	    tmp.value = date.getFullYear() + "-" + month + "-" + day;
+ 	});
+</script>
 <body>
 	<%@ include file="component/nav.jsp" %>
 	<div class="background_box">
@@ -123,19 +174,19 @@
 				<div class="input_container">
 					<div class="search">
 						<label>도서 검색</label>
-						<input id="search" placeholder="도서를 검색하세요" type="text">
+						<input id="input_search" placeholder="도서를 검색하세요" type="text">
 					</div>
 					<div class="date">
 						<label>예약 날짜</label>
-						<input id="search" placeholder="날짜를 선택하세요" type="text">
+						<input id="input_date" type="text">
 					</div>
 					<div class="time">
 						<label>예약 시간</label>
-						<input id="search" placeholder="시간을 선택하세요" type="text">
+						<input id="input_time" placeholder="시간을 선택하세요" type="text">
 					</div>
 					<div class="return_date">
 						<label>반납 날짜</label>
-						<input id="search" placeholder="도서를 선택하세요" type="text" disabled="disabled">
+						<input id="input_return_date" placeholder="도서를 선택하세요" type="text" disabled="disabled">
 					</div>
 				</div>
 				<div class="button_container">
@@ -147,7 +198,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
 </body>
 </html>
