@@ -14,7 +14,6 @@
 <style>
 	body, html {
 		height: 100%;
-		
 	}
 	.container-background {
 		background-color: #FFF0F0;

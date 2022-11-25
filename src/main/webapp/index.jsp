@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width" initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
 <title>하루 한 권</title>
@@ -15,7 +14,7 @@
 	}
 	
 	.jumbotron {
-		background-color: #FFF0F0;
+		background-color: #FFDDDD;
 	}
 	.animated-title {font-size:60px; font-family:'Raleway',Sans-serif; font-weight:300; position: relative; width: 100%;max-width:100%; height: auto; padding:100px 0; overflow-x: hidden; overflow-y: hidden; }
 	.animated-title .track {position: absolute; white-space: nowrap;will-change: transform;animation: marquee 10s linear infinite; }

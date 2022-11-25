@@ -35,7 +35,7 @@
  		<div style="background-color: #FFD6D6;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  			<ul class="nav navbar-nav">
  				<li id="nav_selected"><a href="searchBooks.jsp">도서 검색</a></li>
- 				<li id="nav_selected"><a href="index.jsp">도서 예약</a></li>
+ 				<li id="nav_selected"><a href="reservation.jsp">도서 예약</a></li>
  				<li id="nav_selected"><a href="index.jsp">예약 조회</a></li>
  			</ul>
  			<%
