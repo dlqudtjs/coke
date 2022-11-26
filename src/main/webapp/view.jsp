@@ -24,7 +24,7 @@
 	}
 	.container-book {
 		background-color: white;
-		height: 90%;
+		height: 95%;
 		border-top-left-radius: 7%;
 		border-top-right-radius: 7%; 
 	}
@@ -40,7 +40,7 @@
 	    margin-top: 5%;
 	}
 	.container-summary {
-		height: 20%;
+		height: 15%;
 	    text-align: center;
 		margin-top: 5%;
 	    margin-left: 5%;
@@ -89,7 +89,7 @@
 						<li data-target="#myCarousel" data-slide-to="1"></li>
 						<li data-target="#myCarousel" data-slide-to="2"></li>
 					</ol>
-					<div style="position: relative; width: 100%; overflow: hidden; border-radius: 10%;" class="carousel-inner">
+					<div style="position: relative; width: 100%; overflow: hidden; border-radius: 10%; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);" class="carousel-inner">
 						<div class="item active">
 							<img style="width: 450px; height: 450px" src="images/1.jpg">
 						</div>
@@ -113,8 +113,7 @@
 				<%=book.getBookSummary() %>
 			</div>
 			<div class="container-btn">
-				<button style="height: 4%;" type="button" class="btn btn-danger">예약</button>
-				<button style="height: 4%;" type="button" class="btn btn-danger">목록</button>
+				<button style="height: 4%;" type="button" class="btn btn-danger" onclick="history.back()">목록</button>
 			</div>
 		</div>
 	</div>

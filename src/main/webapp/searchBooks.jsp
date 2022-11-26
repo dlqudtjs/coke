@@ -20,6 +20,10 @@
 	body {
 		background-color: #FFF0F0;
 	}
+	
+	.row {
+	    margin-top: 100px;
+	}
 </style>
 </head>
 <body>

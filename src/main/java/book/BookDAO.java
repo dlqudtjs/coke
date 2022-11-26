@@ -115,18 +115,7 @@ public class BookDAO {
 		return null;
 	}
 	
-//	public int delete(int bbsID) {
-//		//삭제는 하지 않고 Available 값을 0으로 바꿔 유효하지 않는 글로 바꿈
-//		String SQL = "update bbs set bbsAvailable = 0 where bbsID = ?";
-//		try {
-//			// 실행 준비 단계
-//			PreparedStatement pstmt = conn.prepareStatement(SQL);
-//			pstmt.setInt(1, bbsID);
-//			return pstmt.executeUpdate(); //성공적으로 실행했다면
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return -1; //데이터베이스 오류
-//	}	
+	
+	
+	
 }

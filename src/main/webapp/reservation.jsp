@@ -171,30 +171,32 @@
 				</div>
 			</div>
 			<div class="right_container">
-				<div class="input_container">
-					<div class="search">
-						<label>도서 검색</label>
-						<input id="input_search" placeholder="도서를 검색하세요" type="text">
+				<form action="reserveAction.jsp" method="post" style="height: 100%">
+					<div class="input_container">
+							<div class="search">
+								<label>도서 검색</label>
+								<input id="input_search" placeholder="도서를 검색하세요" name="bookTitle" type="text">
+							</div>
+							<div class="date">
+								<label>예약 날짜</label>
+								<input id="input_date" name="date" type="text">
+							</div>
+							<div class="time">
+								<label>예약 시간</label>
+								<input id="input_time" placeholder="시간을 선택하세요" name="time" type="text">
+							</div>
+							<div class="return_date">
+								<label>반납 날짜</label>
+								<input id="input_return_date" placeholder="도서를 선택하세요" name="returnDate" type="text">
+							</div>
 					</div>
-					<div class="date">
-						<label>예약 날짜</label>
-						<input id="input_date" type="text">
+					<div class="button_container">
+						<div class="button_set">
+							<button type="button" id="back">Back</button>
+							<button type="submit" id="reservation">Reserve</button>
+						</div>
 					</div>
-					<div class="time">
-						<label>예약 시간</label>
-						<input id="input_time" placeholder="시간을 선택하세요" type="text">
-					</div>
-					<div class="return_date">
-						<label>반납 날짜</label>
-						<input id="input_return_date" placeholder="도서를 선택하세요" type="text" disabled="disabled">
-					</div>
-				</div>
-				<div class="button_container">
-					<div class="button_set">
-						<button id="back">Back</button>
-						<button id="reservation">Reserve</button>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>

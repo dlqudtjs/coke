@@ -10,7 +10,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>하루 한 권</title>
 </head>
 <body>
 	<%
@@ -58,8 +57,8 @@
 				session.setAttribute("userID", user.getUserID());
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("location.href='index.jsp';");
-				script.println("alert('회원가입이 완료되었습니다.');");
+				script.println("location.href='index.jsp'");
+				script.println("alert('회원가입이 완료되었습니다.')");
 				script.println("</script>");
 				script.close();
 			}
