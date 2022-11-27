@@ -187,7 +187,7 @@
 							</div>
 							<div class="return_date">
 								<label>반납 날짜</label>
-								<input id="input_return_date" placeholder="도서를 선택하세요" name="returnDate" type="text">
+								<input style="background-color: #cacaca" id="input_return_date" name="returnDate" type="text" readonly="readonly">
 							</div>
 					</div>
 					<div class="button_container">

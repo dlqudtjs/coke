@@ -1,3 +1,4 @@
+<%@page import="java.util.StringTokenizer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -19,6 +20,10 @@
 	
 	body {
 		background-color: #FFF0F0;
+	}
+	td {
+	    vertical-align: baseline !important;
+	    border: 0px !important;
 	}
 	
 	.row {
@@ -50,10 +55,12 @@
 					BookDAO bookDAO = new BookDAO();
 					ArrayList<BookDTO> list = bookDAO.getList(pageNumber);
 					for(int i = 0; i < list.size(); i++) {
+						String str = list.get(i).getImageURL();
+						String[] images = str.split(";");
 						if (i % 2 == 0) {
 					%>
 					<tr style="background-color: #FFF0F0;">
-						<td><%=list.get(i).getBookTitle() %></td>
+						<td><a href="view.jsp?bookTitle=<%= list.get(i).getBookTitle()%>"><img src="<%=images[0] %>.jpg" style="width: 100px"></a></td>
 						<td><a href="view.jsp?bookTitle=<%= list.get(i).getBookTitle()%>"><%=list.get(i).getBookTitle() %></a></td>
 						<td><%=list.get(i).getAuthor() %></td>
 						<td><%=list.get(i).getCategory() %></td>
@@ -62,8 +69,8 @@
 							} else {
 					%>
 					<tr style="background-color: #FFDDDD;">
-						<td><%=list.get(i).getBookTitle() %></td>
-						<td><a href="view.jsp?bookTitle=<%= list.get(i).getBookTitle()%>"><%=list.get(i).getBookTitle() %></a></td>
+						<td><a href="view.jsp?bookTitle=<%= list.get(i).getBookTitle()%>"><img src="<%=images[0] %>.jpg" style="width: 100px"></a></td>
+						<td><a href="view?bookTitle=<%= list.get(i).getBookTitle()%>"><%=list.get(i).getBookTitle() %></a></td>
 						<td><%=list.get(i).getAuthor() %></td>
 						<td><%=list.get(i).getCategory() %></td>
 					</tr>

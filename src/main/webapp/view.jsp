@@ -1,3 +1,4 @@
+<%@page import="java.util.StringTokenizer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -17,7 +18,7 @@
 	}
 	.container-background {
 		background-color: #FFF0F0;
-		height: 100%;
+		height: 105%;
 		display: flex;
 	    justify-content: center;
 	    align-items: flex-end;
@@ -54,6 +55,10 @@
 	.container-btn {
 		display: flex;
 	    justify-content: space-evenly;
+        margin-top: 40px;
+	}
+	.carousel-control {
+	    width: 0%;
 	}
 </style>
 </head>
@@ -90,14 +95,18 @@
 						<li data-target="#myCarousel" data-slide-to="2"></li>
 					</ol>
 					<div style="position: relative; width: 100%; overflow: hidden; border-radius: 10%; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);" class="carousel-inner">
+					<%
+						String str = book.getImageURL();
+						String[] images = str.split(";");
+					%>
 						<div class="item active">
-							<img style="width: 450px; height: 450px" src="images/1.jpg">
+							<img style="width: 450px; height: 450px" src="<%=images[0] %>.jpg">
 						</div>
 						<div class="item">
-							<img style="width: 450px; height: 450px" src="images/2.jpg">
+							<img style="width: 450px; height: 450px" src="<%=images[1] %>.jpg">
 						</div>
 						<div class="item">
-							<img style="width: 450px; height: 450px" src="images/3.jpg">
+							<img style="width: 450px; height: 450px" src="<%=images[2] %>.jpg">
 						</div>
 					</div>
 					<a style="margin-top: 10%; height: 80%;" class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -109,8 +118,8 @@
 				</div>
 			</div>
 			<div class="container-summary">
-				<h2><%=book.getBookTitle() %></h3>
-				<%=book.getBookSummary() %>
+				<h2><%=book.getBookTitle() %></h2>
+				<p style="font-size: 13px"><%=book.getBookSummary() %></p>
 			</div>
 			<div class="container-btn">
 				<button style="height: 4%;" type="button" class="btn btn-danger" onclick="history.back()">목록</button>
