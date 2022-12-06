@@ -29,6 +29,16 @@
 	.row {
 	    margin-top: 100px;
 	}
+	.btn-success {
+		color: #fff;
+	    background-color: #ffbbbb;
+	    border-color: #ffbbbb;
+	}
+	.btn-success:hover {
+		color: #fff;
+	    background-color: #ff5164;
+	    border-color: #ff5164;
+	}
 </style>
 </head>
 <body>
@@ -61,7 +71,7 @@
 					%>
 					<tr style="background-color: #FFF0F0;">
 						<td><a href="view.jsp?bookTitle=<%= list.get(i).getBookTitle()%>"><img src="<%=images[0] %>.jpg" style="width: 100px"></a></td>
-						<td><a href="view.jsp?bookTitle=<%= list.get(i).getBookTitle()%>"><%=list.get(i).getBookTitle() %></a></td>
+						<td><a style="font-weight: 900" href="view.jsp?bookTitle=<%= list.get(i).getBookTitle()%>"><%=list.get(i).getBookTitle() %></a></td>
 						<td><%=list.get(i).getAuthor() %></td>
 						<td><%=list.get(i).getCategory() %></td>
 					</tr>
@@ -70,7 +80,7 @@
 					%>
 					<tr style="background-color: #FFDDDD;">
 						<td><a href="view.jsp?bookTitle=<%= list.get(i).getBookTitle()%>"><img src="<%=images[0] %>.jpg" style="width: 100px"></a></td>
-						<td><a href="view?bookTitle=<%= list.get(i).getBookTitle()%>"><%=list.get(i).getBookTitle() %></a></td>
+						<td><a style="font-weight: 900" href="view?bookTitle=<%= list.get(i).getBookTitle()%>"><%=list.get(i).getBookTitle() %></a></td>
 						<td><%=list.get(i).getAuthor() %></td>
 						<td><%=list.get(i).getCategory() %></td>
 					</tr>

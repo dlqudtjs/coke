@@ -143,7 +143,7 @@
 	    
 	    $("#input_time").timepicker({
 	        timeFormat: 'h:mm p',
-	        interval: 60,
+	        interval: 10,
 	        minTime: '10',
 	        maxTime: '6:00pm',
 	        defaultTime: '11',

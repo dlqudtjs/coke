@@ -68,7 +68,7 @@
 						if (i % 2 == 0) {
 					%>
 					<tr style="background-color: #FFF0F0;">
-						<td><%=list.get(i).getBookTitle() %></td>
+						<td style="font-weight: 900"><%=list.get(i).getBookTitle() %></td>
 						<td><%=list.get(i).getBorrowDate() %></td>
 						<td><%=list.get(i).getBorrowTime() %></td>
 						<td><%=list.get(i).getReturnDate() %></td>
@@ -77,7 +77,7 @@
 							} else {
 					%>
 					<tr style="background-color: #FFDDDD;">
-						<td><%=list.get(i).getBookTitle() %></td>
+						<td style="font-weight: 900"><%=list.get(i).getBookTitle() %></td>
 						<td><%=list.get(i).getBorrowDate() %></td>
 						<td><%=list.get(i).getBorrowTime() %></td>
 						<td><%=list.get(i).getReturnDate() %></td>
